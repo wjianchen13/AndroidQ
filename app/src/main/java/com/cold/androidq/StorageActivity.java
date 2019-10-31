@@ -31,6 +31,9 @@ public class StorageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_storage);
     }
     
+    /**
+     * 往沙盒写文件
+     */
     // /storage/emulated/0/Android/data/com.cold.androidq/files/Documents/test.txt
     // /storage/emulated/0/Android/data/com.gzlok.gamemarket.yueai.show/files/Documents/test.txt
     @TargetApi(19)
@@ -39,34 +42,50 @@ public class StorageActivity extends AppCompatActivity {
         write("hello", filePath, "test.txt");
     }
 
-
+    /**
+     * 从沙盒读取文件
+     */
     @TargetApi(19)
     public void onRead(View v) {
         String filePath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
         Toast.makeText(this, read(filePath, "test.txt"), Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * 请求权限
+     */
     public void onRequestRead(View v) {
         getPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE});
     }
-    
+
+    /**
+     * 请求权限
+     */
     public void onRequestWrite(View v) {
         getPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
     }
 
+    /**
+     * 往MediaStore目录写文件
+     */
     @TargetApi(19)
     public void onWriteExternal(View v) {
         String filePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         write("hello111", filePath, "test.txt");
     }
 
+    /**
+     * 从MediaStore目录读文件
+     */
     @TargetApi(19)
     public void onReadExternal(View v) {
         String filePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         Toast.makeText(this, read(filePath, "test.txt"), Toast.LENGTH_LONG).show();
     }
 
-
+    /**
+     * 文件保存
+     */
     private void write(String str, String filePath, String name) {
 //        filePath = "/storage/emulated/0/Android/data/com.cold.androidq1/files/Documents"; // 如果直接访问其他包下的文件，会报错
         String fileName = filePath + File.separator +name;
@@ -84,6 +103,9 @@ public class StorageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 文件读取
+     */
     private String read(String filePath, String fileName) {
         try {
             FileInputStream in = new FileInputStream(filePath + File.separator +fileName);
