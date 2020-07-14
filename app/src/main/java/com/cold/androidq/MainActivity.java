@@ -17,4 +17,8 @@ public class MainActivity extends AppCompatActivity {
     public void onStorage(View v) {
         startActivity(new Intent(this, StorageActivity.class));
     }
+
+    public void onFile(View v) {
+        startActivity(new Intent(this, FileActivity.class));
+    }
 }

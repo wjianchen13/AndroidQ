@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".StorageActivity" />
+        <activity android:name=".FileActivity" />
+        <activity android:name=".BrowseAlbumActivity" />
     </application>
 
 </manifest>
