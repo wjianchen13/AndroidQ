@@ -29,6 +29,21 @@ public class StorageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage);
+        test();
+    }
+
+    @TargetApi(29)
+    private void test() {
+
+        File[] files = getExternalCacheDirs();
+        for(int i = 0; i < files.length; i ++)
+            System.out.println("=======================> getExternalCacheDirs(): " + getExternalCacheDirs()[i].getAbsolutePath());
+        System.out.println("=======================> getExternalFilesDir(): " + getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+        System.out.println("=======================> getExternalFilesDir(): " + getExternalFilesDir(Environment.DIRECTORY_AUDIOBOOKS));
+        System.out.println("=======================> getDataDir(): " + getDataDir());
+        System.out.println("=======================> getExternalCacheDir(): " + getExternalCacheDir());
+        System.out.println("=======================> getExternalFilesDir(): " + getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+
     }
     
     /**
@@ -79,6 +94,7 @@ public class StorageActivity extends AppCompatActivity {
      */
     @TargetApi(19)
     public void onReadExternal(View v) {
+
         String filePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
         Toast.makeText(this, read(filePath, "test.txt"), Toast.LENGTH_LONG).show();
     }
